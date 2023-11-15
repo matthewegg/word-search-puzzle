@@ -15,14 +15,16 @@ void dictionary::readWords()
     ifstream file;
     file.open("dictionary");
     string word;
+
     while (file >> word)
     {
         words.push_back(word);
     }
+
     file.close();
 }
 
-void dictionary::printWords()
+void dictionary::printWords() const
 {
     for (int i = 0; i < words.size(); i++)
     {
@@ -50,8 +52,27 @@ void dictionary::selectionSort()
     }
 }
 
-// need to add this function, first ask professor what it means for the list of words to be sorted
-void dictionary::binarySearch()
+bool dictionary::binarySearch(string word) const
 {
+    int first = 0;
+    int last = size(words) - 1;
 
+    while (first != last)
+    {
+        string str = words[(first + last) / 2];
+        if (str == word)
+        {
+            return true;
+        }
+        else if (word < str)
+        {
+            last = ((first + last) / 2) - 1;
+        }
+        else
+        {
+            first = ((first + last) / 2) + 1;
+        }
+    }
+
+    return false;
 }

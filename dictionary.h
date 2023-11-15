@@ -9,9 +9,9 @@ class dictionary
     public:
         dictionary();
         void readWords();
-        void printWords();
+        void printWords() const;
         void selectionSort();
-        void binarySearch();
+        bool binarySearch(string word) const;
     private:
         vector<string> words;
 };
