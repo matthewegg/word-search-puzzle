@@ -34,20 +34,16 @@ void dictionary::printWords() const
 
 void dictionary::selectionSort()
 {
-    int smallestInd;
-    int temp;
-
     for (int firstInd = 0; firstInd < words.size() - 1; firstInd++)
     {
-        for (int currInd = firstInd + 1; currInd < words.size() - 1; currInd++)
+        int smallestInd = firstInd;
+        for (int currInd = firstInd + 1; currInd < words.size(); currInd++)
         {
             if (words[currInd] < words[smallestInd])
                 smallestInd = currInd;
         }
         if (smallestInd != firstInd) {
-            temp = firstInd;
-            words[firstInd] = words[smallestInd];
-            words[smallestInd] = temp;
+            std::swap(words[firstInd], words[smallestInd]);
         }
     }
 }
@@ -57,7 +53,7 @@ bool dictionary::binarySearch(string word) const
     int first = 0;
     int last = size(words) - 1;
 
-    while (first != last)
+    while (first <= last)
     {
         string str = words[(first + last) / 2];
         if (str == word)

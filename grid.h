@@ -9,6 +9,7 @@ class grid
     public:
         grid();
         void readGrid(string);
+        vector<vector<char>> getMatrix();
     private:
         vector<vector<char>> matrix;
 };

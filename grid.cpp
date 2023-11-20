@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
 grid::grid()
@@ -11,14 +12,32 @@ grid::grid()
 
 void grid::readGrid(string fileName)
 {
-    ifstream file;
-    string line;
-
-    while (getline(file, line))
-    {
-        vector<char> row(line.begin(), line.end());
-        matrix.push_back(row);
+    ifstream file(fileName);
+    if (!file.is_open()) {
+        cout << "Failed to open file" << endl;
+        return;
     }
-    
+
+    string line;
+    if (!getline(file, line) || line.empty()) {
+        cout << "File is empty" << endl;
+        return;
+    }
+
+    while (getline(file, line)) {
+        vector<char> row;
+        for (char ch : line) {
+            if (!isspace(ch) && isalpha(ch)) {
+                row.push_back(ch);
+            }
+        }
+        matrix.push_back(row);
+}
+
     file.close();
+}
+
+vector<vector<char>> grid::getMatrix()
+{ 
+    return matrix;
 }
