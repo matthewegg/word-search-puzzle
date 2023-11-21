@@ -1,4 +1,5 @@
 #include "dictionary.h"
+#include "heap.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -48,7 +49,7 @@ void dictionary::selectionSort()
                 smallestInd = currInd;
         }
         if (smallestInd != firstInd) {
-            std::swap(words[firstInd], words[smallestInd]);
+            swap(words[firstInd], words[smallestInd]);
         }
     }
 }
@@ -104,4 +105,20 @@ int dictionary::partition(int first, int last)
 
     swap(words[i + 1], words[last]);
     return i + 1;
+}
+
+void dictionary::heapSort()
+{
+    cout << "Heap sort" << endl;
+    heap<string> heap;
+    for (int i = 0; i < words.size(); i++)
+    {
+        heap.push(words[i]);
+    }
+    heap.heapsort();
+    cout << "Heap sort done" << endl;
+    for (int i = 0; i < words.size(); i++)
+    {
+        words[i] = heap.getItem(i);
+    }
 }

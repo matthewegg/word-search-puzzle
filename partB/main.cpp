@@ -1,10 +1,12 @@
 #include "dictionary.h"
 #include "grid.h"
+#include "heap.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 using namespace std;
+
 
 void findMatches(dictionary dict, grid grid)
 {
@@ -23,7 +25,6 @@ void findMatches(dictionary dict, grid grid)
                         int nextCol = (j + dir.second * k + cols) % cols;
                         word += grid.getMatrix()[nextRow][nextCol];
                     }
-                    //cout << "Testing word: " << word << endl;
                     if (dict.binarySearch(word)) {
                         cout << word << endl;
                     }
@@ -33,14 +34,46 @@ void findMatches(dictionary dict, grid grid)
     }
 }
 
-int main() {
+
+void search(int i)
+{
+    cout << "Search entered" << endl << endl;
+    string gridFile;
     dictionary dict;
     grid grid;
 
+    cout << "Enter the name of the grid to be used: ";
+    cin >> gridFile;
+
     dict.readWords();
-    dict.quickSort(0, dict.getDictSize() - 1);
-    grid.readGrid("input50-1");
-    grid.getMatrix();
+    grid.readGrid(gridFile);
+
+    if (i == 1) {
+        dict.selectionSort();
+    }
+    else if (i == 2) {
+        cout << "Quick sort" << endl;
+        dict.quickSort(0, dict.getDictSize() - 1);
+    }
+    else if (i == 3) {
+        cout << "Heap sort" << endl;
+        dict.heapSort();
+    }
+    else {
+        cout << "Invalid input" << endl;
+        return;
+    }
 
     findMatches(dict, grid);
+
+}
+
+int main() {
+    int i;
+    cout << "Enter 1 for selection sort, 2 for quick sort, 3 for heap sort: ";
+    cin >> i;
+    cout << "Entering search..." << endl << endl;
+    search(i);
+    cout << endl << "Exiting search..." << endl;
+    return 0;
 }
