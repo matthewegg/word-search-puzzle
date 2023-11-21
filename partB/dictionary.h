@@ -17,6 +17,7 @@ class dictionary
         int partition(int, int);
         void heapSort();
         bool binarySearch(string word) const;
+        
     private:
         vector<string> words;
 };

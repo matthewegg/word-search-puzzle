@@ -26,7 +26,7 @@ class heap {
         }
 
         void initializeMaxHeap() {
-            for (int i = objects.size() / 2; i >= 1; --i) {
+            for (int i = objects.size() / 2; i >= 1; i--) {
                 maxHeapify(i);
             }
         }
@@ -54,7 +54,8 @@ class heap {
 
         void heapsort() {
             buildMaxHeap();
-            for (int i = objects.size() - 1; i >= 2; --i) {
+            
+            for (int i = objects.size() - 1; i >= 2; i--) {
                 swap(objects[1], objects[i]);
                 objects.pop_back();
                 maxHeapify(1);
@@ -63,6 +64,10 @@ class heap {
 
         void push(T item) {
             objects.push_back(item);
+        }
+
+        vector<T> getElements() const {
+            return objects;
         }
 };
 

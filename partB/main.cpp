@@ -37,7 +37,6 @@ void findMatches(dictionary dict, grid grid)
 
 void search(int i)
 {
-    cout << "Search entered" << endl << endl;
     string gridFile;
     dictionary dict;
     grid grid;
@@ -46,17 +45,14 @@ void search(int i)
     cin >> gridFile;
 
     dict.readWords();
-    grid.readGrid(gridFile);
 
     if (i == 1) {
         dict.selectionSort();
     }
     else if (i == 2) {
-        cout << "Quick sort" << endl;
         dict.quickSort(0, dict.getDictSize() - 1);
     }
     else if (i == 3) {
-        cout << "Heap sort" << endl;
         dict.heapSort();
     }
     else {
@@ -64,6 +60,7 @@ void search(int i)
         return;
     }
 
+    grid.readGrid(gridFile);
     findMatches(dict, grid);
 
 }
@@ -72,8 +69,6 @@ int main() {
     int i;
     cout << "Enter 1 for selection sort, 2 for quick sort, 3 for heap sort: ";
     cin >> i;
-    cout << "Entering search..." << endl << endl;
     search(i);
-    cout << endl << "Exiting search..." << endl;
     return 0;
 }

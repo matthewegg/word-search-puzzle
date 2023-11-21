@@ -26,13 +26,15 @@ void grid::readGrid(string fileName)
 
     while (getline(file, line)) {
         vector<char> row;
+
         for (char ch : line) {
             if (!isspace(ch) && isalpha(ch)) {
                 row.push_back(ch);
             }
         }
+        
         matrix.push_back(row);
-}
+    }
 
     file.close();
 }

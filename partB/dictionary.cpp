@@ -43,11 +43,13 @@ void dictionary::selectionSort()
     for (int firstInd = 0; firstInd < words.size() - 1; firstInd++)
     {
         int smallestInd = firstInd;
+
         for (int currInd = firstInd + 1; currInd < words.size(); currInd++)
         {
             if (words[currInd] < words[smallestInd])
                 smallestInd = currInd;
         }
+
         if (smallestInd != firstInd) {
             swap(words[firstInd], words[smallestInd]);
         }
@@ -109,16 +111,15 @@ int dictionary::partition(int first, int last)
 
 void dictionary::heapSort()
 {
-    cout << "Heap sort" << endl;
     heap<string> heap;
-    for (int i = 0; i < words.size(); i++)
-    {
-        heap.push(words[i]);
+
+    for (string word : words) {
+        heap.push(word);
     }
+
     heap.heapsort();
-    cout << "Heap sort done" << endl;
-    for (int i = 0; i < words.size(); i++)
-    {
-        words[i] = heap.getItem(i);
+
+    for (int i = 0; i < words.size(); i++) {
+        words[i] = heap.getItem(i + 1);
     }
 }
